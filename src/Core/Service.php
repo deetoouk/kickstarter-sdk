@@ -113,7 +113,7 @@ class Service extends Config
     /**
      * Add your custom headers
      */
-    public function setCustomHeaders()
+    protected function setCustomHeaders()
     {
     }
 
