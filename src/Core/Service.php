@@ -62,14 +62,13 @@ class Service extends Config
     }
 
     /**
-     * @param       $cast
-     * @param array ...$parameters
-     *
-     * @return mixed
+     * Adds all headers
      */
-    public final function callAndCast($cast, ...$parameters)
+    protected function prepareHeaders()
     {
-        return $this->cast($cast, $this->call(...$parameters));
+        $this->setCustomHeader('Version', static::getVersion());
+        $this->setHeader('Accept-Language', static::getLanguage());
+        $this->setHeader('Authorization', 'Bearer ' . static::getApiKey());
     }
 
     /**
@@ -81,6 +80,72 @@ class Service extends Config
     public final function cast(string $cast, $response)
     {
         return new $cast($response);
+    }
+
+    /**
+     * @param       $cast
+     * @param array ...$parameters
+     *
+     * @return mixed
+     */
+    public final function callAndCast($cast, ...$parameters)
+    {
+        return $this->cast($cast, $this->call(...$parameters));
+    }
+
+    /**
+     * @param       $cast
+     * @param array ...$parameters
+     *
+     * @return mixed
+     */
+    public final function getAndCast($cast, ...$parameters)
+    {
+        return $this->cast($cast, $this->get(...$parameters));
+    }
+
+    /**
+     * @param       $cast
+     * @param array ...$parameters
+     *
+     * @return mixed
+     */
+    public final function postAndCast($cast, ...$parameters)
+    {
+        return $this->cast($cast, $this->post(...$parameters));
+    }
+
+    /**
+     * @param       $cast
+     * @param array ...$parameters
+     *
+     * @return mixed
+     */
+    public final function putAndCast($cast, ...$parameters)
+    {
+        return $this->cast($cast, $this->put(...$parameters));
+    }
+
+    /**
+     * @param       $cast
+     * @param array ...$parameters
+     *
+     * @return mixed
+     */
+    public final function patchAndCast($cast, ...$parameters)
+    {
+        return $this->cast($cast, $this->put(...$parameters));
+    }
+
+    /**
+     * @param       $cast
+     * @param array ...$parameters
+     *
+     * @return mixed
+     */
+    public final function deleteAndCast($cast, ...$parameters)
+    {
+        return $this->cast($cast, $this->delete(...$parameters));
     }
 
     /**
@@ -116,16 +181,6 @@ class Service extends Config
     }
 
     /**
-     * Adds all headers
-     */
-    protected function prepareHeaders()
-    {
-        $this->setCustomHeader('Version', static::getVersion());
-        $this->setHeader('Accept-Language', static::getLanguage());
-        $this->setHeader('Authorization', 'Bearer ' . static::getApiKey());
-    }
-
-    /**
      * @param            $method
      * @param array|null $request
      *
@@ -156,6 +211,17 @@ class Service extends Config
     public final function put($method, array $request = null)
     {
         return $this->call('put', $method, $request);
+    }
+
+    /**
+     * @param            $method
+     * @param array|null $request
+     *
+     * @return mixed
+     */
+    public final function patch($method, array $request = null)
+    {
+        return $this->call('patch', $method, $request);
     }
 
     /**
