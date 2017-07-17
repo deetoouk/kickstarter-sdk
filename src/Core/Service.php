@@ -53,6 +53,15 @@ class Service extends Config
     }
 
     /**
+     * @param string $header
+     * @param string $value
+     */
+    public function setCustomHeader(string $header, string $value)
+    {
+        $this->headers[self::$custom_header_prefix . $header] = $value;
+    }
+
+    /**
      * @param       $cast
      * @param array ...$parameters
      *
@@ -111,7 +120,7 @@ class Service extends Config
      */
     protected function prepareHeaders()
     {
-        $this->setHeader(static::$header_prefix . 'Version', static::getVersion());
+        $this->setCustomHeader('Version', static::getVersion());
         $this->setHeader('Accept-Language', static::getLanguage());
         $this->setHeader('Authorization', 'Bearer ' . static::getApiKey());
     }

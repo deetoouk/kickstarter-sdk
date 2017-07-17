@@ -49,7 +49,7 @@ class Config
     /**
      * @var string
      */
-    protected static $header_prefix = 'SDK-';
+    protected static $custom_header_prefix = 'SDK-';
 
     /**
      * Retrieves Event API key
