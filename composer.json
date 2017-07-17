@@ -1,0 +1,34 @@
+{
+  "name": "jtdsoft/essentials-sdk",
+  "description": "SDK Essentials By Jordan Dobrev",
+  "keywords": [
+    "essentials",
+    "laravel",
+    "php",
+    "sdk"
+  ],
+  "license": "JordanDobrev",
+  "type": "package",
+  "require": {
+    "guzzlehttp/guzzle": "~6.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~4.0",
+    "phpspec/phpspec": "~2.1",
+    "mockery/mockery": "*",
+    "fzaninotto/faker": "1.4.0",
+    "theseer/phpdox": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "JTDSoft\\EssentialsSdk\\": "src/"
+    },
+    "files": [
+      "src/helpers.php",
+      "src/laravel/helpers.php"
+    ]
+  },
+  "config": {
+    "preferred-install": "dist"
+  }
+}
