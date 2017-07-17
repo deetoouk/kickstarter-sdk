@@ -91,10 +91,6 @@ class Service extends Config
             $request = [];
         }
 
-        $this->setHeader(static::$header_prefix . 'Version', static::getVersion());
-        $this->setHeader('Accept-Language', static::getLanguage());
-        $this->setHeader('Authorization', 'Bearer ' . static::getApiKey());
-
         $this->setCustomHeaders();
 
         $client = new GuzzleClient(new Guzzle([
@@ -111,10 +107,13 @@ class Service extends Config
     }
 
     /**
-     * Add your custom headers
+     * Adds all headers
      */
-    protected function setCustomHeaders()
+    protected function prepareHeaders()
     {
+        $this->setHeader(static::$header_prefix . 'Version', static::getVersion());
+        $this->setHeader('Accept-Language', static::getLanguage());
+        $this->setHeader('Authorization', 'Bearer ' . static::getApiKey());
     }
 
     /**

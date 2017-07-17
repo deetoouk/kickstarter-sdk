@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a2506163-a353-40d0-aa75-f0d7fb36b451" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Core/Service.php" afterPath="$PROJECT_DIR$/src/Core/Service.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -18,11 +17,10 @@
       <file leaf-file-name="Service.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Core/Service.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="567">
-              <caret line="117" column="5" lean-forward="true" selection-start-line="117" selection-start-column="5" selection-end-line="117" selection-end-column="5" />
+            <state relative-caret-position="444">
+              <caret line="116" column="5" lean-forward="false" selection-start-line="116" selection-start-column="5" selection-end-line="116" selection-end-column="5" />
               <folding>
-                <element signature="e#46#78#0#PHP" expanded="true" />
-                <marker date="1500289601000" expanded="true" signature="3772:3800" ph="..." />
+                <marker date="1500290034000" expanded="true" signature="3762:3790" ph="..." />
               </folding>
             </state>
           </provider>
@@ -57,6 +55,7 @@
       <find>cast</find>
       <find>setVer</find>
       <find>setHeaders</find>
+      <find>headers</find>
     </findStrings>
     <replaceStrings>
       <replace>class Add</replace>
@@ -66,6 +65,7 @@
       <replace>JTDSoft</replace>
       <replace>Service::</replace>
       <replace>static::</replace>
+      <replace>global_headers</replace>
     </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/src</dir>
@@ -297,12 +297,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1500280292134</updated>
-      <workItem from="1500280293745" duration="6114000" />
+      <workItem from="1500280293745" duration="6529000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6114000" />
+    <option name="totallyTimeSpent" value="6529000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="1053" extended-state="6" />
@@ -483,11 +483,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Core/Service.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="567">
-          <caret line="117" column="5" lean-forward="true" selection-start-line="117" selection-start-column="5" selection-end-line="117" selection-end-column="5" />
+        <state relative-caret-position="444">
+          <caret line="116" column="5" lean-forward="false" selection-start-line="116" selection-start-column="5" selection-end-line="116" selection-end-column="5" />
           <folding>
-            <element signature="e#46#78#0#PHP" expanded="true" />
-            <marker date="1500289601000" expanded="true" signature="3772:3800" ph="..." />
+            <marker date="1500290034000" expanded="true" signature="3762:3790" ph="..." />
           </folding>
         </state>
       </provider>
