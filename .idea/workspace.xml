@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a2506163-a353-40d0-aa75-f0d7fb36b451" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Core/Config.php" afterPath="$PROJECT_DIR$/src/Core/Config.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Core/Service.php" afterPath="$PROJECT_DIR$/src/Core/Service.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -16,19 +14,19 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Service.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Service.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Core/Service.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="155" column="6" lean-forward="true" selection-start-line="155" selection-start-column="6" selection-end-line="155" selection-end-column="6" />
+            <state relative-caret-position="192">
+              <caret line="94" column="65" lean-forward="false" selection-start-line="94" selection-start-column="65" selection-end-line="94" selection-end-column="65" />
               <folding>
-                <marker date="1500284919000" expanded="true" signature="3566:3594" ph="..." />
+                <marker date="1500288532000" expanded="true" signature="3634:3662" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Config.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Config.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Core/Config.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="357">
@@ -91,8 +89,8 @@
         <option value="$PROJECT_DIR$/src/Core/Settings.php" />
         <option value="$PROJECT_DIR$/src/Core/Object.php" />
         <option value="$PROJECT_DIR$/composer.json" />
-        <option value="$PROJECT_DIR$/src/Core/Service.php" />
         <option value="$PROJECT_DIR$/src/Core/Config.php" />
+        <option value="$PROJECT_DIR$/src/Core/Service.php" />
       </list>
     </option>
   </component>
@@ -296,12 +294,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1500280292134</updated>
-      <workItem from="1500280293745" duration="5089000" />
+      <workItem from="1500280293745" duration="5142000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5089000" />
+    <option name="totallyTimeSpent" value="5142000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="1053" extended-state="6" />
@@ -472,21 +470,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Core/Service.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="155" column="6" lean-forward="true" selection-start-line="155" selection-start-column="6" selection-end-line="155" selection-end-column="6" />
-          <folding>
-            <marker date="1500284919000" expanded="true" signature="3566:3594" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Core/Config.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
           <caret line="123" column="7" lean-forward="true" selection-start-line="123" selection-start-column="7" selection-end-line="123" selection-end-column="7" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Core/Service.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="94" column="65" lean-forward="false" selection-start-line="94" selection-start-column="65" selection-end-line="94" selection-end-column="65" />
+          <folding>
+            <marker date="1500288532000" expanded="true" signature="3634:3662" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>

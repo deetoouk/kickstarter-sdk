@@ -92,6 +92,7 @@ class Service extends Config
         }
 
         $this->setHeader(static::$header_prefix . 'Version', static::getVersion());
+        $this->setHeader('Accept-Language', static::getLanguage());
         $this->setHeader('Authorization', 'Bearer ' . static::getApiKey());
 
         $client = new GuzzleClient(new Guzzle([
