@@ -29,7 +29,7 @@ class Cast
      * @return mixed
      * @throws ErrorException
      */
-    public static function castMany($cast, $response)
+    public static function many($cast, $response)
     {
         $result = [];
 
