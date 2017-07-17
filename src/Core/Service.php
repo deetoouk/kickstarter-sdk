@@ -108,6 +108,50 @@ class Service extends Config
     }
 
     /**
+     * @param            $method
+     * @param array|null $request
+     *
+     * @return mixed
+     */
+    public final function get($method, array $request = null)
+    {
+        return $this->call('get', $method, $request);
+    }
+
+    /**
+     * @param            $method
+     * @param array|null $request
+     *
+     * @return mixed
+     */
+    public final function post($method, array $request = null)
+    {
+        return $this->call('post', $method, $request);
+    }
+
+    /**
+     * @param            $method
+     * @param array|null $request
+     *
+     * @return mixed
+     */
+    public final function put($method, array $request = null)
+    {
+        return $this->call('put', $method, $request);
+    }
+
+    /**
+     * @param            $method
+     * @param array|null $request
+     *
+     * @return mixed
+     */
+    public final function delete($method, array $request = null)
+    {
+        return $this->call('delete', $method, $request);
+    }
+
+    /**
      * @param string $method
      *
      * @return string
