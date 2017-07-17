@@ -95,6 +95,8 @@ class Service extends Config
         $this->setHeader('Accept-Language', static::getLanguage());
         $this->setHeader('Authorization', 'Bearer ' . static::getApiKey());
 
+        $this->setCustomHeaders();
+
         $client = new GuzzleClient(new Guzzle([
             'proxy'  => static::getProxy(),
             'verify' => static::verify(),
@@ -106,6 +108,13 @@ class Service extends Config
             $request,
             $this->getHeaders()
         );
+    }
+
+    /**
+     * Add your custom headers
+     */
+    public function setCustomHeaders()
+    {
     }
 
     /**
