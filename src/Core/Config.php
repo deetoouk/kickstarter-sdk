@@ -34,6 +34,11 @@ class Config
     /**
      * @var string
      */
+    protected static $language = 'en';
+
+    /**
+     * @var string
+     */
     protected static $proxy = null;
 
     /**
@@ -112,6 +117,22 @@ class Config
     public static function setVersion(string $version)
     {
         self::$version = $version;
+    }
+
+    /**
+     * @return string
+     */
+    public static function getLanguage(): string
+    {
+        return self::$language;
+    }
+
+    /**
+     * @param string $language
+     */
+    public static function setLanguage(string $language)
+    {
+        self::$language = $language;
     }
 
     /**
