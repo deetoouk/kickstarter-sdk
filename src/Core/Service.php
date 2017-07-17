@@ -91,7 +91,7 @@ class Service extends Config
             $request = [];
         }
 
-        $this->setCustomHeaders();
+        $this->prepareHeaders();
 
         $client = new GuzzleClient(new Guzzle([
             'proxy'  => static::getProxy(),
