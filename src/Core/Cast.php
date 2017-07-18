@@ -45,7 +45,7 @@ class Cast
             $paging->setLastPage($response['last_page']);
             $paging->setFrom($response['from']);
             $paging->setTo($response['to']);
-            $paging->setItems(static::castMany($cast, $response['data']));
+            $paging->setItems(static::many($cast, $response['data']));
 
             return $paging;
         }
