@@ -23,11 +23,7 @@
   "autoload": {
     "psr-4": {
       "JTDSoft\\EssentialsSdk\\": "src/"
-    },
-    "files": [
-      "src/helpers.php",
-      "src/laravel/helpers.php"
-    ]
+    }
   },
   "config": {
     "preferred-install": "dist"
