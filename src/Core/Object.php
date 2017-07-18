@@ -96,7 +96,7 @@ abstract class Object implements Arrayable, JsonSerializable
      *
      * @return DateTime|float|int
      */
-    private static function castSingleProperty($type, $value)
+    protected static function castSingleProperty($type, $value)
     {
         if ($type === 'int') {
             return intval($value);

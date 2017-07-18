@@ -112,7 +112,7 @@ class Service extends Config
      *
      * @return string
      */
-    private function getUrl($method)
+    protected function getUrl($method)
     {
         $endpoint = sprintf(
             '%s://%s/',
