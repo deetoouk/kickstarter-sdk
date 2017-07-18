@@ -58,7 +58,7 @@ class Config
      */
     public static function getApiKey()
     {
-        return self::$api_key;
+        return static::$api_key;
     }
 
     /**
@@ -66,7 +66,7 @@ class Config
      */
     public static function setApiKey($api_key)
     {
-        self::$api_key = $api_key;
+        static::$api_key = $api_key;
     }
 
     /**
@@ -76,7 +76,7 @@ class Config
      */
     public static function getEndpoint()
     {
-        return self::$endpoint;
+        return static::$endpoint;
     }
 
     /**
@@ -84,7 +84,7 @@ class Config
      */
     public static function setEndpoint($endpoint)
     {
-        self::$endpoint = $endpoint;
+        static::$endpoint = $endpoint;
     }
 
     /**
@@ -92,7 +92,7 @@ class Config
      */
     public static function getProtocol()
     {
-        return self::$protocol;
+        return static::$protocol;
     }
 
     /**
@@ -100,7 +100,7 @@ class Config
      */
     public static function setProtocol($protocol)
     {
-        self::$protocol = $protocol;
+        static::$protocol = $protocol;
     }
 
     /**
@@ -108,7 +108,7 @@ class Config
      */
     public static function getVersion(): ?string
     {
-        return self::$version;
+        return static::$version;
     }
 
     /**
@@ -116,7 +116,7 @@ class Config
      */
     public static function setVersion(string $version)
     {
-        self::$version = $version;
+        static::$version = $version;
     }
 
     /**
@@ -124,7 +124,7 @@ class Config
      */
     public static function getLanguage(): string
     {
-        return self::$language;
+        return static::$language;
     }
 
     /**
@@ -132,7 +132,7 @@ class Config
      */
     public static function setLanguage(string $language)
     {
-        self::$language = $language;
+        static::$language = $language;
     }
 
     /**
@@ -140,7 +140,7 @@ class Config
      */
     public static function getProxy()
     {
-        return self::$proxy;
+        return static::$proxy;
     }
 
     /**
@@ -148,7 +148,7 @@ class Config
      */
     public static function setProxy($proxy)
     {
-        self::$proxy = $proxy;
+        static::$proxy = $proxy;
     }
 
     /**
@@ -156,7 +156,7 @@ class Config
      */
     public static function getVerifySsl()
     {
-        return self::$verify_ssl;
+        return static::$verify_ssl;
     }
 
     /**
@@ -164,7 +164,7 @@ class Config
      */
     public static function setVerifySsl($verify_ssl)
     {
-        self::$verify_ssl = $verify_ssl;
+        static::$verify_ssl = $verify_ssl;
     }
 
     /**
@@ -172,11 +172,11 @@ class Config
      */
     public static function verify()
     {
-        if (!is_null(self::$verify_ssl)) {
-            return self::$verify_ssl;
+        if (!is_null(static::$verify_ssl)) {
+            return static::$verify_ssl;
         }
 
-        if (!is_null(self::$proxy)) {
+        if (!is_null(static::$proxy)) {
             return false;
         }
 
@@ -188,7 +188,7 @@ class Config
      */
     public static function getHeaderPrefix(): string
     {
-        return self::$header_prefix;
+        return static::$header_prefix;
     }
 
     /**
@@ -196,6 +196,6 @@ class Config
      */
     public static function setHeaderPrefix(string $header_prefix)
     {
-        self::$header_prefix = $header_prefix;
+        static::$header_prefix = $header_prefix;
     }
 }

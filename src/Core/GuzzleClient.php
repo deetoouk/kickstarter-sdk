@@ -87,7 +87,7 @@ class GuzzleClient implements Client
                 throw new ErrorException('System in maintenance mode!');
             }
 
-            throw new ServerException('Unexpected error! Please contact JTDSoft\EssentialsSdk for more information!');
+            throw new ServerException('Unexpected error! Please contact us for more information!');
         } catch (Exception $e) {
             throw new ResponseException($e->getMessage(), $e->getCode());
         }

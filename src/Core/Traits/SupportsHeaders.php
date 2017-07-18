@@ -44,7 +44,7 @@ trait SupportsHeaders
      */
     public function setCustomHeader(string $header, string $value)
     {
-        $this->headers[self::$custom_header_prefix . $header] = $value;
+        $this->headers[static::$custom_header_prefix . $header] = $value;
     }
 
     /**

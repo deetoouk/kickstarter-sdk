@@ -51,7 +51,7 @@ class Cast
         }
 
         foreach ($response as $key => $value) {
-            $result[] = self::cast($cast, $value);
+            $result[] = static::cast($cast, $value);
         }
 
         return new Collection($result);

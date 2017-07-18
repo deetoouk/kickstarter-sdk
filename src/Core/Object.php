@@ -77,10 +77,10 @@ abstract class Object implements Arrayable, JsonSerializable
                     $type              = trim($type, '[]');
                     $this->{$property} = new Collection();
                     foreach ($value[$property] as $key => $single) {
-                        $this->{$property}[$key] = self::castSingleProperty($type, $single);
+                        $this->{$property}[$key] = static::castSingleProperty($type, $single);
                     }
                 } else {
-                    $this->{$property} = self::castSingleProperty($type, $value);
+                    $this->{$property} = static::castSingleProperty($type, $value);
                 }
             } else {
                 $this->{$property} = $value;
