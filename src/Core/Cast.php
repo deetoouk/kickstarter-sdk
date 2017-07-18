@@ -51,7 +51,7 @@ class Cast
         }
 
         foreach ($response as $key => $value) {
-            $result[] = static::cast($cast, $value);
+            $result[] = static::single($cast, $value);
         }
 
         return new Collection($result);
