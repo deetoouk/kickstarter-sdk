@@ -38,14 +38,13 @@ class Cast
         }
 
         if (isset($response['total']) && isset($response['data'])) { //for paging
-            $paging = new Paging();
+            $paging = new Paging(static::many($cast, $response['data']));
 
             $paging->setPage($response['current_page']);
             $paging->setTotal($response['total']);
             $paging->setLastPage($response['last_page']);
             $paging->setFrom($response['from']);
             $paging->setTo($response['to']);
-            $paging->setItems(static::many($cast, $response['data']));
 
             return $paging;
         }
