@@ -115,7 +115,7 @@ abstract class Object implements Arrayable, JsonSerializable
      * @param $type
      * @param $value
      *
-     * @return DateTime|float|int
+     * @return DateTime|float|int|object
      */
     protected static function castSingleProperty($type, $value)
     {
@@ -125,6 +125,8 @@ abstract class Object implements Arrayable, JsonSerializable
             return floatval($value);
         } elseif ($type === 'bool') {
             return boolval($value);
+        } elseif ($type === 'object') {
+            return (object)$value;
         } elseif (class_exists($type)) {
             if ($type === '\DateTime') {
                 return (new \DateTime())->setTimestamp(strtotime($value));
