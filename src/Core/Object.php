@@ -72,15 +72,19 @@ abstract class Object implements Arrayable, JsonSerializable
      */
     public function copyFromArray(array $array)
     {
-        $reflect = new ReflectionClass($this);
-
-        preg_match_all('/@property\s+(.*)?\n/', $reflect->getDocComment(), $matches);
+        $to_scan = array_merge(class_parents($this), class_uses_deep($this), [get_class($this) => get_class($this)]);
 
         $properties = [];
 
-        foreach ($matches[1] as $match) {
-            list($type, $value) = preg_split('/\s+/', $match);
-            $properties[ltrim($value, '$')] = $type;
+        foreach ($to_scan as $object) {
+            $reflect = new ReflectionClass($object);
+
+            preg_match_all('/(@property|@property\-read)\s+(.*)?\n/', $reflect->getDocComment(), $matches);
+
+            foreach ($matches[2] as $match) {
+                list($type, $value) = preg_split('/\s+/', $match);
+                $properties[ltrim($value, '$')] = $type;
+            }
         }
 
         foreach ($array as $property => $value) {
