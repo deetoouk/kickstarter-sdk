@@ -3,9 +3,9 @@
 namespace JTDSoft\EssentialsSdk\Core;
 
 use DateTime;
+use JsonSerializable;
 use JTDSoft\EssentialsSdk\Contracts\Arrayable;
 use JTDSoft\EssentialsSdk\Exceptions\ErrorException;
-use JsonSerializable;
 use ReflectionClass;
 
 /**
@@ -16,7 +16,20 @@ use ReflectionClass;
  */
 abstract class Object implements Arrayable, JsonSerializable
 {
+    /**
+     * @var array
+     */
     public $data = [];
+
+    /**
+     * @var array
+     */
+    public $expand = [];
+
+    /**
+     * @var array
+     */
+    public $options = [];
 
     /**
      * Creates new object
@@ -203,5 +216,42 @@ abstract class Object implements Arrayable, JsonSerializable
         }
 
         return $array;
+    }
+
+    /**
+     * @param array $expand
+     *
+     * @return $this
+     */
+    public function expand(array $expand = [])
+    {
+        $this->expand = $expand;
+
+        return $this;
+    }
+
+    /**
+     * @param array $options
+     *
+     * @return $this
+     */
+    public function options(array $options = [])
+    {
+        $this->options = $options;
+
+        return $this;
+    }
+
+    /**
+     * @param array $request
+     *
+     * @return array
+     */
+    protected function buildRequest(array $request = [])
+    {
+        return $request + [
+                'expand'  => $this->expand,
+                'options' => $this->options,
+            ];
     }
 }
