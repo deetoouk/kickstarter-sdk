@@ -243,15 +243,30 @@ abstract class Object implements Arrayable, JsonSerializable
     }
 
     /**
-     * @param array $request
-     *
-     * @return array
+     * @return \JTDSoft\EssentialsSdk\Core\Service
      */
-    protected function buildRequest(array $request = [])
+    protected function api()
     {
-        return $request + [
-                'expand'  => $this->expand,
-                'options' => $this->options,
-            ];
+        $service = $this->service();
+
+        if ($this->expand) {
+            $service->setDefaultRequest('expand', $this->expand);
+        }
+
+        if ($this->options) {
+            $service->setDefaultRequest('options', $this->options);
+        }
+
+        return $service;
+    }
+
+    /**
+     * Override this method if using extended service
+     *
+     * @return \JTDSoft\EssentialsSdk\Core\Service
+     */
+    protected function service()
+    {
+        return new Service();
     }
 }

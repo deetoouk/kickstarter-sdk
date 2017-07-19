@@ -4,6 +4,7 @@ namespace JTDSoft\EssentialsSdk\Core;
 
 use GuzzleHttp\Client as Guzzle;
 use JTDSoft\EssentialsSdk\Contracts\Client;
+use JTDSoft\EssentialsSdk\Core\Traits\DefaultRequestData;
 use JTDSoft\EssentialsSdk\Core\Traits\SupportsHeaders;
 
 /**
@@ -13,12 +14,24 @@ use JTDSoft\EssentialsSdk\Core\Traits\SupportsHeaders;
  */
 class Service extends Config
 {
-    use SupportsHeaders;
+    use SupportsHeaders,
+        DefaultRequestData;
 
     /**
      * @var Client
      */
     protected $client;
+
+    /**
+     * @param            $method
+     * @param array|null $request
+     *
+     * @return mixed
+     */
+    public final function get($method, array $request = null)
+    {
+        return $this->call('get', $method, $request);
+    }
 
     /**
      * @param       $verb
@@ -39,6 +52,8 @@ class Service extends Config
 
         $this->prepareHeaders();
 
+        $request = $this->prepareRequest($request);
+
         $client = new GuzzleClient(new Guzzle([
             'proxy'  => static::getProxy(),
             'verify' => static::verify(),
@@ -53,14 +68,20 @@ class Service extends Config
     }
 
     /**
-     * @param            $method
-     * @param array|null $request
+     * @param string $method
      *
-     * @return mixed
+     * @return string
      */
-    public final function get($method, array $request = null)
+    protected function getUrl($method)
     {
-        return $this->call('get', $method, $request);
+        $endpoint = sprintf(
+            '%s://%s/',
+            static::getProtocol(),
+            static::getEndpoint(),
+            $method
+        );
+
+        return $endpoint;
     }
 
     /**
@@ -105,22 +126,5 @@ class Service extends Config
     public final function delete($method, array $request = null)
     {
         return $this->call('delete', $method, $request);
-    }
-
-    /**
-     * @param string $method
-     *
-     * @return string
-     */
-    protected function getUrl($method)
-    {
-        $endpoint = sprintf(
-            '%s://%s/',
-            static::getProtocol(),
-            static::getEndpoint(),
-            $method
-        );
-
-        return $endpoint;
     }
 }
