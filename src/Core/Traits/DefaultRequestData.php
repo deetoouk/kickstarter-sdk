@@ -7,7 +7,7 @@ trait DefaultRequestData
     /**
      * @var array
      */
-    protected $default_request;
+    protected $default_request = [];
 
     /**
      * @param $key
