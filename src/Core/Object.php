@@ -79,7 +79,11 @@ abstract class Object implements Arrayable, JsonSerializable
         foreach ($to_scan as $object) {
             $reflect = new ReflectionClass($object);
 
-            preg_match_all('/(@property|@property\-read)\s+(.*)?\n/', $reflect->getDocComment(), $matches);
+            preg_match_all(
+                '/(@property|@property\-read|@property\-write)\s+(.*)?\n/',
+                $reflect->getDocComment(),
+                $matches
+            );
 
             foreach ($matches[2] as $match) {
                 list($type, $value) = preg_split('/\s+/', $match);
