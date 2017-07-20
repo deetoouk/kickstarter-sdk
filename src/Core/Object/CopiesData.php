@@ -33,16 +33,16 @@ trait CopiesData
             if (isset(static::$properties[$property])) {
                 $type = static::$properties[$property]['type'];
                 if (strpos($type, '[]') !== false) { //array
-                    $type              = trim($type, '[]');
-                    $this->{$property} = new Collection();
+                    $type                  = trim($type, '[]');
+                    $this->data[$property] = new Collection();
                     foreach ($value[$property] as $key => $single) {
-                        $this->{$property}[$key] = static::castSingleProperty($type, $single);
+                        $this->data[$property][$key] = static::castSingleProperty($type, $single);
                     }
                 } else {
-                    $this->{$property} = static::castSingleProperty($type, $value);
+                    $this->data[$property] = static::castSingleProperty($type, $value);
                 }
             } else {
-                $this->{$property} = $value;
+                $this->data[$property] = $value;
             }
         }
 
