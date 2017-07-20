@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: jordan
- * Date: 20/07/2017
- * Time: 10:56
- */
 
 namespace JTDSoft\EssentialsSdk\Core\Object;
 
@@ -43,14 +37,29 @@ trait ParsesProperties
             $reflect = new ReflectionClass($object);
 
             preg_match_all(
-                '/(@property|@property\-read|@property\-write)\s+(.*)?\n/',
+                '/@property(\-read|\-write)?\s+(.*)?\n/',
                 $reflect->getDocComment(),
                 $matches
             );
 
-            foreach ($matches[2] as $match) {
-                list($type, $value) = preg_split('/\s+/', $match);
-                static::$properties[ltrim($value, '$')] = $type;
+            foreach ($matches[0] as $match) {
+                list($annotation_type, $type, $value) = preg_split('/\s+/', $match);
+
+                switch ($annotation_type) {
+                    case "@property":
+                        $read  = true;
+                        $write = true;
+                        break;
+                    case "@property-read":
+                        $read  = true;
+                        $write = false;
+                        break;
+                    case "@property-write":
+                        $read  = false;
+                        $write = true;
+                        break;
+                }
+                static::$properties[ltrim($value, '$')] = compact('type', 'read', 'write');
             }
         }
     }

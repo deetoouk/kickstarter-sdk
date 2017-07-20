@@ -10,7 +10,9 @@ use JTDSoft\EssentialsSdk\Core\Object;
  * @property string $name
  * @property integer $age
  * @property array $interests
- * @property-read \Tests\Core\Example[] $parent
+ * @property-read int $orders
+ * @property-write string $note
+ * @property \Tests\Core\Example[] $parent
  */
 class Example extends Object
 {

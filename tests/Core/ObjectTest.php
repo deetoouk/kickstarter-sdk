@@ -10,12 +10,46 @@ class ObjectTest extends TestCase
     {
         $class = new Example();
 
-        $this->assertSame($class::getProperties(), [
-            'name'      => 'string',
-            'age'       => 'integer',
-            'interests' => 'array',
-            'parent'    => '\Tests\Core\Example[]',
+        $this->assertSame(array_keys($class::getProperties()), [
+            'name',
+            'age',
+            'interests',
+            'orders',
+            'note',
+            'parent',
         ]);
+
+        foreach ($class::getProperties() as $property) {
+            $this->assertArrayHasKey('type', $property);
+            $this->assertArrayHasKey('read', $property);
+            $this->assertArrayHasKey('write', $property);
+        }
+    }
+
+    /**
+     * @expectedException \JTDSoft\EssentialsSdk\Exceptions\ErrorException
+     * @expectedExceptionMessage Property orders is read-only!
+     */
+    public function test_read_only_properties()
+    {
+        $example = new Example();
+
+        $var = $example->orders;
+
+        $example->orders = 123;
+    }
+
+    /**
+     * @expectedException \JTDSoft\EssentialsSdk\Exceptions\ErrorException
+     * @expectedExceptionMessage Property note is write-only!
+     */
+    public function test_write_only_properties()
+    {
+        $example = new Example();
+
+        $example->note = 'some note';
+
+        $var = $example->note;
     }
 
     public function test_support_dirty_data()

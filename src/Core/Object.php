@@ -67,6 +67,12 @@ abstract class Object implements Arrayable, JsonSerializable
      */
     public function __get($key)
     {
+        if (array_key_exists($key, static::$properties)) {
+            if (!static::$properties[$key]['read']) {
+                throw new ErrorException(sprintf('Property %1$s is write-only!', $key));
+            }
+        }
+
         $method = 'get' . str_replace(' ', '', ucwords(str_replace(['_'], ' ', $key)));
 
         if (method_exists($this, $method)) {
@@ -84,6 +90,12 @@ abstract class Object implements Arrayable, JsonSerializable
      */
     public function __set($key, $value)
     {
+        if (array_key_exists($key, static::$properties)) {
+            if (!static::$properties[$key]['write']) {
+                throw new ErrorException(sprintf('Property %1$s is read-only!', $key));
+            }
+        }
+
         $method = 'set' . str_replace(' ', '', ucwords(str_replace(['_'], ' ', $key)));
 
         $before = $this->data[$key] ?? null;

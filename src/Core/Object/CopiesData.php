@@ -31,7 +31,7 @@ trait CopiesData
     {
         foreach ($array as $property => $value) {
             if (isset(static::$properties[$property])) {
-                $type = static::$properties[$property];
+                $type = static::$properties[$property]['type'];
                 if (strpos($type, '[]') !== false) { //array
                     $type              = trim($type, '[]');
                     $this->{$property} = new Collection();
