@@ -114,7 +114,7 @@ class Config
     /**
      * @param string $version
      */
-    public static function setVersion(string $version): void
+    public static function setVersion(?string $version): void
     {
         static::$version = $version;
     }
@@ -146,7 +146,7 @@ class Config
     /**
      * @param string $proxy
      */
-    public static function setProxy(string $proxy): void
+    public static function setProxy(?string $proxy): void
     {
         static::$proxy = $proxy;
     }
