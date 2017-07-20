@@ -29,9 +29,9 @@ class Cast
      * @return mixed
      * @throws ErrorException
      */
-    public static function many($cast, $response)
+    public static function many($cast, $response): iterable
     {
-        $result = [];
+        $result = new Collection();
 
         if (!$response) {
             return $result;
@@ -50,9 +50,9 @@ class Cast
         }
 
         foreach ($response as $key => $value) {
-            $result[] = static::single($cast, $value);
+            $result->push(static::single($cast, $value));
         }
 
-        return new Collection($result);
+        return new $result;
     }
 }

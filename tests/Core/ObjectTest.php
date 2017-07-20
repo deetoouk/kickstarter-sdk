@@ -10,10 +10,15 @@ class ObjectTest extends TestCase
     {
         $class = new Example();
 
-        dd($class::getProperties());
+        $this->assertSame($class::getProperties(), [
+            'name'      => 'string',
+            'age'       => 'integer',
+            'interests' => 'array',
+            'parent'    => '\Tests\Core\Example[]',
+        ]);
     }
 
-    public function test_support_dirt_data()
+    public function test_support_dirty_data()
     {
         $example = new Example();
 
@@ -52,6 +57,6 @@ class ObjectTest extends TestCase
 
         $example->parent->name = 'Leia Skywalker';
 
-        dd($example->getDirty());
+        $this->assertTrue($example->isClean());
     }
 }

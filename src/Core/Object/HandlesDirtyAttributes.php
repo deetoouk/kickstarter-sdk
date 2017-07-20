@@ -16,7 +16,7 @@ trait HandlesDirtyAttributes
      *
      * @return bool
      */
-    public function isDirty($attributes = null)
+    public function isDirty($attributes = null): bool
     {
         $dirty = $this->getDirty();
 
@@ -42,7 +42,7 @@ trait HandlesDirtyAttributes
      *
      * @return bool
      */
-    public function isClean($attributes = null)
+    public function isClean($attributes = null): bool
     {
         return !$this->isDirty(...func_get_args());
     }
@@ -52,18 +52,15 @@ trait HandlesDirtyAttributes
      *
      * @return array
      */
-    public function getDirty()
+    public function getDirty(): array
     {
-        foreach($this->data as $value) {
-            if($value instanceof Arrayy)
-        }
         return array_only($this->data, $this->dirty_attributes);
     }
 
     /**
      * @param string $attribute
      */
-    public function addDirtyAttribute(string $attribute)
+    public function addDirtyAttribute(string $attribute): void
     {
         if (in_array($attribute, $this->dirty_attributes)) {
             return;
@@ -75,7 +72,7 @@ trait HandlesDirtyAttributes
     /**
      * cleans dirty attributes
      */
-    public function cleanDirtyAttributes()
+    public function cleanDirtyAttributes(): void
     {
         $this->dirty_attributes = [];
     }
