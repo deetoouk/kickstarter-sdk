@@ -207,7 +207,7 @@ abstract class Object implements Arrayable, JsonSerializable
     /**
      * @return \JTDSoft\EssentialsSdk\Core\Service
      */
-    protected function api(): Service
+    protected function api()
     {
         $service = $this->service();
 
@@ -227,7 +227,7 @@ abstract class Object implements Arrayable, JsonSerializable
      *
      * @return \JTDSoft\EssentialsSdk\Core\Service
      */
-    protected function service(): Service
+    protected function service()
     {
         return new Service();
     }
