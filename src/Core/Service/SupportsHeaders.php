@@ -1,6 +1,6 @@
 <?php
 
-namespace JTDSoft\EssentialsSdk\Core\Traits;
+namespace JTDSoft\EssentialsSdk\Core\Service;
 
 trait SupportsHeaders
 {

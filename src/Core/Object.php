@@ -5,8 +5,10 @@ namespace JTDSoft\EssentialsSdk\Core;
 use DateTime;
 use JsonSerializable;
 use JTDSoft\EssentialsSdk\Contracts\Arrayable;
+use JTDSoft\EssentialsSdk\Core\Object\CopiesData;
+use JTDSoft\EssentialsSdk\Core\Object\HandlesDirtyAttributes;
+use JTDSoft\EssentialsSdk\Core\Object\ParsesProperties;
 use JTDSoft\EssentialsSdk\Exceptions\ErrorException;
-use ReflectionClass;
 
 /**
  * @Annotation
@@ -16,6 +18,10 @@ use ReflectionClass;
  */
 abstract class Object implements Arrayable, JsonSerializable
 {
+    use HandlesDirtyAttributes,
+        ParsesProperties,
+        CopiesData;
+
     /**
      * @var array
      */
@@ -40,101 +46,16 @@ abstract class Object implements Arrayable, JsonSerializable
      */
     public function __construct($data = null)
     {
-        if (is_object($data)) {
-            $this->copy($data);
-        } elseif (is_array($data)) {
-            $this->copyFromArray($data);
-        } else {
-            $this->id = $data;
-        }
-    }
+        static::parseProperties();
 
-    /**
-     * Copies attributes from target object
-     *
-     * @param Object $target
-     *
-     * @return $this
-     */
-    public function copy(Object $target)
-    {
-        $this->data = $target->data;
-
-        return $this;
-    }
-
-    /**
-     * Creates object from array
-     *
-     * @param array $array
-     *
-     * @return static
-     */
-    public function copyFromArray(array $array)
-    {
-        $to_scan = array_merge(class_parents($this), class_uses_deep($this), [get_class($this) => get_class($this)]);
-
-        $properties = [];
-
-        foreach ($to_scan as $object) {
-            $reflect = new ReflectionClass($object);
-
-            preg_match_all(
-                '/(@property|@property\-read|@property\-write)\s+(.*)?\n/',
-                $reflect->getDocComment(),
-                $matches
-            );
-
-            foreach ($matches[2] as $match) {
-                list($type, $value) = preg_split('/\s+/', $match);
-                $properties[ltrim($value, '$')] = $type;
-            }
-        }
-
-        foreach ($array as $property => $value) {
-            if (isset($properties[$property])) {
-                $type = $properties[$property];
-                if (strpos($type, '[]') !== false) { //array
-                    $type              = trim($type, '[]');
-                    $this->{$property} = new Collection();
-                    foreach ($value[$property] as $key => $single) {
-                        $this->{$property}[$key] = static::castSingleProperty($type, $single);
-                    }
-                } else {
-                    $this->{$property} = static::castSingleProperty($type, $value);
-                }
+        if ($data) {
+            if (is_object($data)) {
+                $this->copy($data);
+            } elseif (is_array($data)) {
+                $this->copyFromArray($data);
             } else {
-                $this->{$property} = $value;
+                $this->id = $data;
             }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @param $type
-     * @param $value
-     *
-     * @return DateTime|float|int|object
-     */
-    protected static function castSingleProperty($type, $value)
-    {
-        if ($type === 'int') {
-            return intval($value);
-        } elseif ($type === 'float') {
-            return floatval($value);
-        } elseif ($type === 'bool') {
-            return boolval($value);
-        } elseif ($type === 'object') {
-            return (object)$value;
-        } elseif (class_exists($type)) {
-            if ($type === '\DateTime') {
-                return (new \DateTime())->setTimestamp(strtotime($value));
-            } else {
-                return new $type($value);
-            }
-        } else { //all other types, including non specified arrays
-            return $value;
         }
     }
 
@@ -159,17 +80,33 @@ abstract class Object implements Arrayable, JsonSerializable
      * @param $key
      * @param $value
      *
-     * @return mixed
+     * @throws \JTDSoft\EssentialsSdk\Exceptions\ErrorException
      */
     public function __set($key, $value)
     {
         $method = 'set' . str_replace(' ', '', ucwords(str_replace(['_'], ' ', $key)));
 
-        if (method_exists($this, $method)) {
-            return $this->{$method}($key);
+        $before = $this->data[$key] ?? null;
+
+        if (!array_key_exists($key, $this->data)) {
+            $this->addDirtyAttribute($key);
         }
 
-        return $this->data[$key] = $value;
+        if (method_exists($this, $method)) {
+            $this->{$method}($value);
+
+            if (!array_key_exists($key, $this->data)) {
+                throw new ErrorException($method . ' should set value!');
+            }
+        } else {
+            $this->data[$key] = $value;
+        }
+
+        $after = $this->data[$key] ?? null;
+
+        if ($before !== $after) {
+            $this->addDirtyAttribute($key);
+        }
     }
 
     /**
@@ -187,21 +124,24 @@ abstract class Object implements Arrayable, JsonSerializable
      */
     public function __unset($key)
     {
-        unset($this->data[$key]);
+        if (array_key_exists($key, $this->data)) {
+            $this->addDirtyAttribute($key);
+            unset($this->data[$key]);
+        }
     }
 
     /**
      * @return string
      */
-    function jsonSerialize()
+    function jsonSerialize(): string
     {
-        return $this->toArray();
+        return json_encode($this->toArray());
     }
 
     /**
      * @return array
      */
-    public function toArray()
+    public function toArray(): array
     {
         $array = [];
 

@@ -4,8 +4,8 @@ namespace JTDSoft\EssentialsSdk\Core;
 
 use GuzzleHttp\Client as Guzzle;
 use JTDSoft\EssentialsSdk\Contracts\Client;
-use JTDSoft\EssentialsSdk\Core\Traits\DefaultRequestData;
-use JTDSoft\EssentialsSdk\Core\Traits\SupportsHeaders;
+use JTDSoft\EssentialsSdk\Core\Service\DefaultRequestData;
+use JTDSoft\EssentialsSdk\Core\Service\SupportsHeaders;
 
 /**
  * Class Service
