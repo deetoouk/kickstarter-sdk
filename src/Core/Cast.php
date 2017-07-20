@@ -53,6 +53,6 @@ class Cast
             $result->push(static::single($cast, $value));
         }
 
-        return new $result;
+        return $result;
     }
 }
