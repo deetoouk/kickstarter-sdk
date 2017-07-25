@@ -4,6 +4,7 @@ namespace JTDSoft\EssentialsSdk\Core\Object;
 
 use Carbon\Carbon;
 use JTDSoft\EssentialsSdk\Core\Collection;
+use JTDSoft\EssentialsSdk\Core\Object;
 
 trait CopiesData
 {
