@@ -30,9 +30,12 @@ abstract class Object implements Arrayable, JsonSerializable
     /**
      * @var array
      */
-    protected $settings = [
-        'expand' => [],
-    ];
+    protected $expand = [];
+
+    /**
+     * @var array
+     */
+    protected $options = [];
 
     /**
      * Creates new object
@@ -72,7 +75,7 @@ abstract class Object implements Arrayable, JsonSerializable
             }
         }
 
-        $method = 'get' . str_replace(' ', '', ucwords(str_replace(['_'], ' ', $key)));
+        $method = 'get' . str_replace(' ', '', ucwords(str_replace(['_'], ' ', $key))) . 'Property';
 
         if (method_exists($this, $method)) {
             return $this->{$method}($key);
@@ -95,7 +98,7 @@ abstract class Object implements Arrayable, JsonSerializable
             }
         }
 
-        $method = 'set' . str_replace(' ', '', ucwords(str_replace(['_'], ' ', $key)));
+        $method = 'set' . str_replace(' ', '', ucwords(str_replace(['_'], ' ', $key))) . 'Property';
 
         $before = $this->data[$key] ?? null;
 
@@ -186,29 +189,48 @@ abstract class Object implements Arrayable, JsonSerializable
      */
     public function expand(array $expand = [])
     {
-        return $this->setting('expand', $expand);
-    }
-
-    /**
-     *
-     * @param string $key
-     * @param mixed $value
-     *
-     * @return $this
-     */
-    public function setting(string $key, mixed $value)
-    {
-        $this->settings[$key] = $value;
+        $this->expand = $expand;
 
         return $this;
     }
 
     /**
-     * @return array
+     * @return mixed
+     */
+    public function getExpand()
+    {
+        return $this->expand;
+    }
+
+    /**
+     * @param array $options
+     *
+     * @return $this
+     */
+    public function options(array $options = [])
+    {
+        $this->options = $options;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOptions()
+    {
+        return $this->options;
+    }
+
+    /**
+     *
      */
     public function settings()
     {
-        return $this->settings;
+        return [
+            'expand'  => $this->expand,
+            'options' => $this->options,
+        ];
     }
 
     /**
@@ -218,8 +240,12 @@ abstract class Object implements Arrayable, JsonSerializable
     {
         $service = $this->service();
 
-        foreach ($this->settings as $key => $value) {
-            $service->setDefaultRequest($key, $value);
+        if ($this->expand) {
+            $service->setDefaultRequest('expand', $this->expand);
+        }
+
+        if ($this->options) {
+            $service->setDefaultRequest('options', $this->options);
         }
 
         return $service;
