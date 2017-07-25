@@ -36,8 +36,8 @@ trait CopiesData
                 if (strpos($type, '[]') !== false) { //array
                     $type                  = trim($type, '[]');
                     $this->data[$property] = new Collection();
-                    foreach ($value[$property] as $key => $single) {
-                        $this->data[$property][$key] = static::castSingleProperty($type, $single);
+                    foreach ($value as $key => $single) {
+                        $this->data[$property]->push($key, static::castSingleProperty($type, $single));
                     }
                 } else {
                     $this->data[$property] = static::castSingleProperty($type, $value);
