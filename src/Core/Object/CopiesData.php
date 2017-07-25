@@ -2,6 +2,7 @@
 
 namespace JTDSoft\EssentialsSdk\Core\Object;
 
+use Carbon\Carbon;
 use JTDSoft\EssentialsSdk\Core\Collection;
 
 trait CopiesData
@@ -67,7 +68,7 @@ trait CopiesData
             return (object)$value;
         } elseif (class_exists($type)) {
             if ($type === '\DateTime') {
-                return (new \DateTime())->setTimestamp(strtotime($value));
+                return Carbon::createFromTimestamp(strtotime($value));
             } else {
                 return new $type($value);
             }
