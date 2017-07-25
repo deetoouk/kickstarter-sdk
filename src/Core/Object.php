@@ -30,12 +30,9 @@ abstract class Object implements Arrayable, JsonSerializable
     /**
      * @var array
      */
-    protected $expand = [];
-
-    /**
-     * @var array
-     */
-    protected $options = [];
+    protected $settings = [
+        'expand' => [],
+    ];
 
     /**
      * Creates new object
@@ -189,27 +186,19 @@ abstract class Object implements Arrayable, JsonSerializable
      */
     public function expand(array $expand = [])
     {
-        $this->expand = $expand;
-
-        return $this;
+        return $this->setting('expand', $expand);
     }
 
     /**
-     * @return array
-     */
-    public function getExpand()
-    {
-        return $this->expand;
-    }
-
-    /**
-     * @param array $options
+     *
+     * @param string $key
+     * @param mixed $value
      *
      * @return $this
      */
-    public function options(array $options = [])
+    public function setting(string $key, mixed $value)
     {
-        $this->options = $options;
+        $this->settings[$key] = $value;
 
         return $this;
     }
@@ -217,9 +206,9 @@ abstract class Object implements Arrayable, JsonSerializable
     /**
      * @return array
      */
-    public function getOptions()
+    public function settings()
     {
-        return $this->options;
+        return $this->settings;
     }
 
     /**
@@ -229,12 +218,8 @@ abstract class Object implements Arrayable, JsonSerializable
     {
         $service = $this->service();
 
-        if ($this->expand) {
-            $service->setDefaultRequest('expand', $this->expand);
-        }
-
-        if ($this->options) {
-            $service->setDefaultRequest('options', $this->options);
+        foreach ($this->settings as $key => $value) {
+            $service->setDefaultRequest($key, $value);
         }
 
         return $service;
