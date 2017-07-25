@@ -30,12 +30,12 @@ abstract class Object implements Arrayable, JsonSerializable
     /**
      * @var array
      */
-    public $expand = [];
+    protected $expand = [];
 
     /**
      * @var array
      */
-    public $options = [];
+    protected $options = [];
 
     /**
      * Creates new object
@@ -195,6 +195,14 @@ abstract class Object implements Arrayable, JsonSerializable
     }
 
     /**
+     * @return array
+     */
+    public function getExpand()
+    {
+        return $this->expand;
+    }
+
+    /**
      * @param array $options
      *
      * @return $this
@@ -204,6 +212,14 @@ abstract class Object implements Arrayable, JsonSerializable
         $this->options = $options;
 
         return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getOptions()
+    {
+        return $this->options;
     }
 
     /**
