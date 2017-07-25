@@ -21,7 +21,7 @@ trait ParsesProperties
      */
     protected static function parseProperties()
     {
-        if (!empty(static::$properties)) {
+        if (!empty(static::$properties[static::class])) {
             return;
         }
 
@@ -31,7 +31,7 @@ trait ParsesProperties
             [static::class => static::class]
         );
 
-        static::$properties = [];
+        static::$properties[static::class] = [];
 
         foreach ($to_scan as $object) {
             $reflect = new ReflectionClass($object);
@@ -59,7 +59,7 @@ trait ParsesProperties
                         $write = true;
                         break;
                 }
-                static::$properties[ltrim($value, '$')] = compact('type', 'read', 'write');
+                static::$properties[static::class][ltrim($value, '$')] = compact('type', 'read', 'write');
             }
         }
     }
@@ -71,6 +71,6 @@ trait ParsesProperties
     {
         static::parseProperties();
 
-        return static::$properties;
+        return static::$properties[static::class];
     }
 }

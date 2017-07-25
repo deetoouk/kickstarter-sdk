@@ -36,13 +36,13 @@ trait CopiesData
     public function copyFromArray(array $array)
     {
         foreach ($array as $property => $value) {
-            if (isset(static::$properties[$property])) {
-                $type = static::$properties[$property]['type'];
+            if (isset(static::getProperties()[$property])) {
+                $type = static::getProperties()[$property]['type'];
                 if (strpos($type, '[]') !== false) { //array
                     $type                  = trim($type, '[]');
                     $this->data[$property] = new Collection();
                     foreach ($value as $key => $single) {
-                        $this->data[$property]->push($key, static::castSingleProperty($type, $single));
+                        $this->data[$property]->put($key, static::castSingleProperty($type, $single));
                     }
                 } else {
                     $this->data[$property] = static::castSingleProperty($type, $value);

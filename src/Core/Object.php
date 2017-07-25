@@ -69,8 +69,8 @@ abstract class Object implements Arrayable, JsonSerializable
      */
     public function __get($key)
     {
-        if (array_key_exists($key, static::$properties)) {
-            if (!static::$properties[$key]['read']) {
+        if (array_key_exists($key, static::getProperties())) {
+            if (!static::getProperties()[$key]['read']) {
                 throw new ErrorException(sprintf('Property %1$s is write-only!', $key));
             }
         }
@@ -93,7 +93,7 @@ abstract class Object implements Arrayable, JsonSerializable
     public function __set($key, $value)
     {
         if (array_key_exists($key, static::$properties)) {
-            if (!static::$properties[$key]['write']) {
+            if (!static::getProperties()[$key]['write']) {
                 throw new ErrorException(sprintf('Property %1$s is read-only!', $key));
             }
         }
