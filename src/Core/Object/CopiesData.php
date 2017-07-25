@@ -58,22 +58,22 @@ trait CopiesData
      */
     protected static function castSingleProperty($type, $value)
     {
-        if ($type === 'int') {
-            return intval($value);
-        } elseif ($type === 'float') {
-            return floatval($value);
-        } elseif ($type === 'bool') {
-            return boolval($value);
-        } elseif ($type === 'object') {
-            return (object)$value;
-        } elseif (class_exists($type)) {
-            if ($type === '\DateTime') {
+        switch ($type) {
+            case 'int':
+            case 'integer':
+                return intval($value);
+            case 'float':
+                return floatval($value);
+            case 'object':
+                return (object)$value;
+            case '\DateTime':
                 return Carbon::createFromTimestamp(strtotime($value));
-            } else {
-                return new $type($value);
-            }
-        } else { //all other types, including non specified arrays
-            return $value;
+            default:
+                if (class_exists($type)) {
+                    return new $type($value);
+                }
+
+                return $value;
         }
     }
 }
