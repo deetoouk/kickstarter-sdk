@@ -17,7 +17,11 @@ trait CopiesData
      */
     public function copy(Object $target)
     {
-        $this->data = $target->data;
+        foreach ($target as $attribute => $value) {
+            $this->{$attribute} = $value;
+        }
+
+        $this->cleanDirtyAttributes();
 
         return $this;
     }

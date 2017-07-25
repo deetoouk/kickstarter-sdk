@@ -49,8 +49,10 @@ abstract class Object implements Arrayable, JsonSerializable
         static::parseProperties();
 
         if ($data) {
-            if (is_object($data)) {
+            if ($data instanceof Object) {
                 $this->copy($data);
+            } elseif (is_object($data)) {
+                $this->copyFromArray((array)$data);
             } elseif (is_array($data)) {
                 $this->copyFromArray($data);
             } else {
