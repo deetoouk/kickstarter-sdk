@@ -3,6 +3,7 @@
 namespace JTDSoft\EssentialsSdk\Core;
 
 use DateTime;
+use Illuminate\Contracts\Support\Jsonable;
 use JsonSerializable;
 use JTDSoft\EssentialsSdk\Contracts\Arrayable;
 use JTDSoft\EssentialsSdk\Core\Object\CopiesData;
@@ -16,7 +17,7 @@ use JTDSoft\EssentialsSdk\Exceptions\ErrorException;
  *
  * @package JTDSoft\EssentialsSdk\Objects
  */
-abstract class Object implements Arrayable, JsonSerializable
+abstract class Object implements Arrayable, JsonSerializable, Jsonable
 {
     use HandlesDirtyAttributes,
         ParsesProperties,
@@ -150,6 +151,28 @@ abstract class Object implements Arrayable, JsonSerializable
     function jsonSerialize(): string
     {
         return json_encode($this->toArray());
+    }
+
+    /**
+     * Get the collection of items as JSON.
+     *
+     * @param  int $options
+     *
+     * @return string
+     */
+    public function toJson($options = 0)
+    {
+        return json_encode($this->jsonSerialize(), $options);
+    }
+
+    /**
+     * Convert the collection to its string representation.
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->toJson();
     }
 
     /**
