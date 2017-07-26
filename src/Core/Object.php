@@ -160,7 +160,7 @@ abstract class Object implements Arrayable, JsonSerializable
         $array = [];
 
         foreach ($this->data as $name => $value) {
-            if (is_array($value)) {
+            if (is_iterable($value)) {
                 foreach ($value as $key => $single) {
                     if ($single instanceof Arrayable) {
                         $array[$name][$key] = $single->toArray();
