@@ -93,7 +93,7 @@ abstract class Object implements Arrayable, JsonSerializable, Jsonable
      */
     public function __set($key, $value)
     {
-        if (array_key_exists($key, static::$properties)) {
+        if (array_key_exists($key, static::getProperties())) {
             if (!static::getProperties()[$key]['write']) {
                 throw new ErrorException(sprintf('Property %1$s is read-only!', $key));
             }
