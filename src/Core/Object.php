@@ -3,9 +3,9 @@
 namespace JTDSoft\EssentialsSdk\Core;
 
 use DateTime;
+use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Contracts\Support\Jsonable;
 use JsonSerializable;
-use JTDSoft\EssentialsSdk\Contracts\Arrayable;
 use JTDSoft\EssentialsSdk\Core\Object\CopiesData;
 use JTDSoft\EssentialsSdk\Core\Object\HandlesDirtyAttributes;
 use JTDSoft\EssentialsSdk\Core\Object\ParsesProperties;
