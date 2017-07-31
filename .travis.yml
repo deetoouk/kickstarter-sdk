@@ -6,4 +6,7 @@ php:
 install:
   - composer install --no-interaction --prefer-source
 
-script: vendor/bin/phpunit
+script:
+  - vendor/bin/phpunit
+  - vendor/bin/phpcs app --standard=psr2
+  - vendor/bin/phpcs tests --standard=psr2
