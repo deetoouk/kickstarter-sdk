@@ -9,4 +9,3 @@ install:
 script:
   - vendor/bin/phpunit
   - vendor/bin/phpcs app --standard=psr2
-  - vendor/bin/phpcs tests --standard=psr2
