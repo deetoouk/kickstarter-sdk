@@ -148,7 +148,7 @@ abstract class Object implements Arrayable, JsonSerializable, Jsonable
     /**
      * @return array
      */
-    function jsonSerialize(): array
+    public function jsonSerialize(): array
     {
         return $this->toArray();
     }
