@@ -1,6 +1,6 @@
 <?php
 
-namespace JTDSoft\EssentialsSdk\Core\Object;
+namespace JTDSoft\EssentialsSdk\Object;
 
 trait HandlesDirtyAttributes
 {

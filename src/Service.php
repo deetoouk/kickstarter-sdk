@@ -1,10 +1,10 @@
 <?php
 
-namespace JTDSoft\EssentialsSdk\Core;
+namespace JTDSoft\EssentialsSdk;
 
 use GuzzleHttp\Client as Guzzle;
-use JTDSoft\EssentialsSdk\Core\Service\DefaultRequestData;
-use JTDSoft\EssentialsSdk\Core\Service\SupportsHeaders;
+use JTDSoft\EssentialsSdk\Service\DefaultRequestData;
+use JTDSoft\EssentialsSdk\Service\SupportsHeaders;
 
 /**
  * Class Service

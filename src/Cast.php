@@ -1,13 +1,13 @@
 <?php
 
-namespace JTDSoft\EssentialsSdk\Core;
+namespace JTDSoft\EssentialsSdk;
 
 use JTDSoft\EssentialsSdk\Exceptions\ErrorException;
 
 /**
  * Class Cast
  *
- * @package JTDSoft\EssentialsSdk\Core
+ * @package JTDSoft\EssentialsSdk
  */
 class Cast
 {

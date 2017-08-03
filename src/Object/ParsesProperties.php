@@ -1,13 +1,13 @@
 <?php
 
-namespace JTDSoft\EssentialsSdk\Core\Object;
+namespace JTDSoft\EssentialsSdk\Object;
 
 use ReflectionClass;
 
 /**
  * Trait ParsesProperties
  *
- * @package JTDSoft\EssentialsSdk\Core\Object
+ * @package JTDSoft\EssentialsSdk\Object
  */
 trait ParsesProperties
 {

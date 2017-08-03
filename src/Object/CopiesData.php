@@ -1,10 +1,10 @@
 <?php
 
-namespace JTDSoft\EssentialsSdk\Core\Object;
+namespace JTDSoft\EssentialsSdk\Object;
 
 use Carbon\Carbon;
-use JTDSoft\EssentialsSdk\Core\Collection;
-use JTDSoft\EssentialsSdk\Core\Object;
+use JTDSoft\EssentialsSdk\Collection;
+use JTDSoft\EssentialsSdk\Object;
 
 trait CopiesData
 {

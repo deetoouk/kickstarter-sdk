@@ -1,14 +1,14 @@
 <?php
 
-namespace JTDSoft\EssentialsSdk\Core;
+namespace JTDSoft\EssentialsSdk;
 
 use DateTime;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Contracts\Support\Jsonable;
 use JsonSerializable;
-use JTDSoft\EssentialsSdk\Core\Object\CopiesData;
-use JTDSoft\EssentialsSdk\Core\Object\HandlesDirtyAttributes;
-use JTDSoft\EssentialsSdk\Core\Object\ParsesProperties;
+use JTDSoft\EssentialsSdk\Object\CopiesData;
+use JTDSoft\EssentialsSdk\Object\HandlesDirtyAttributes;
+use JTDSoft\EssentialsSdk\Object\ParsesProperties;
 use JTDSoft\EssentialsSdk\Exceptions\ErrorException;
 
 /**
@@ -257,7 +257,7 @@ abstract class Object implements Arrayable, JsonSerializable, Jsonable
     }
 
     /**
-     * @return \JTDSoft\EssentialsSdk\Core\Service
+     * @return \JTDSoft\EssentialsSdk\Service
      */
     protected function api()
     {
@@ -277,7 +277,7 @@ abstract class Object implements Arrayable, JsonSerializable, Jsonable
     /**
      * Override this method if using extended service
      *
-     * @return \JTDSoft\EssentialsSdk\Core\Service
+     * @return \JTDSoft\EssentialsSdk\Service
      */
     protected function service()
     {

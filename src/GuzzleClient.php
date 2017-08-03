@@ -1,4 +1,4 @@
-<?php namespace JTDSoft\EssentialsSdk\Core;
+<?php namespace JTDSoft\EssentialsSdk;
 
 use JTDSoft\EssentialsSdk\Contracts\Client;
 use JTDSoft\EssentialsSdk\Exceptions\ErrorException;

@@ -1,6 +1,6 @@
 <?php
 
-namespace JTDSoft\EssentialsSdk\Core;
+namespace JTDSoft\EssentialsSdk;
 
 /**
  * Class Identity
