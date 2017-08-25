@@ -1,8 +1,6 @@
 <?php
 
-namespace Tests\Core;
-
-use Tests\TestCase;
+namespace Tests;
 
 class ObjectTest extends TestCase
 {

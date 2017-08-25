@@ -1,8 +1,8 @@
 <?php
 
-namespace Tests\Core;
+namespace Tests;
 
-use JTDSoft\EssentialsSdk\Core\Object;
+use JTDSoft\EssentialsSdk\Object;
 
 /**
  * Class Example
