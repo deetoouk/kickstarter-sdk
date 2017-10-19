@@ -19,7 +19,7 @@ class Cast
      */
     public static function single(string $cast, $response)
     {
-        return new $cast($response);
+        return new $cast($response, true);
     }
 
     /**

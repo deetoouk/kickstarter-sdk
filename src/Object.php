@@ -44,8 +44,9 @@ abstract class Object implements Arrayable, JsonSerializable, Jsonable
      * else it sets the Id
      *
      * @param null|int|array|\StdClass $data
+     * @param bool $clean_dirty_attributes
      */
-    public function __construct($data = null)
+    public function __construct($data = null, $clean_dirty_attributes = false)
     {
         static::parseProperties();
 
@@ -58,6 +59,10 @@ abstract class Object implements Arrayable, JsonSerializable, Jsonable
                 $this->copyFromArray($data);
             } else {
                 $this->id = $data;
+            }
+
+            if ($clean_dirty_attributes) {
+                $this->cleanDirtyAttributes();
             }
         }
     }

@@ -21,8 +21,6 @@ trait CopiesData
             $this->{$attribute} = $value;
         }
 
-        $this->cleanDirtyAttributes();
-
         return $this;
     }
 
@@ -39,16 +37,16 @@ trait CopiesData
             if (isset(static::getProperties()[$property])) {
                 $type = static::getProperties()[$property]['type'];
                 if (strpos($type, '[]') !== false) { //array
-                    $type                  = trim($type, '[]');
-                    $this->data[$property] = new Collection();
+                    $type              = trim($type, '[]');
+                    $this->{$property} = new Collection();
                     foreach ($value as $key => $single) {
-                        $this->data[$property]->put($key, static::castSingleProperty($type, $single));
+                        $this->{$property}->put($key, static::castSingleProperty($type, $single));
                     }
                 } else {
-                    $this->data[$property] = static::castSingleProperty($type, $value);
+                    $this->{$property} = static::castSingleProperty($type, $value);
                 }
             } else {
-                $this->data[$property] = $value;
+                $this->{$property} = $value;
             }
         }
 
