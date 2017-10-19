@@ -6,10 +6,10 @@ use DateTime;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Contracts\Support\Jsonable;
 use JsonSerializable;
+use JTDSoft\EssentialsSdk\Exceptions\ErrorException;
 use JTDSoft\EssentialsSdk\Object\CopiesData;
 use JTDSoft\EssentialsSdk\Object\HandlesDirtyAttributes;
 use JTDSoft\EssentialsSdk\Object\ParsesProperties;
-use JTDSoft\EssentialsSdk\Exceptions\ErrorException;
 
 /**
  * @Annotation
@@ -176,13 +176,17 @@ abstract class Object implements Arrayable, JsonSerializable, Jsonable
     }
 
     /**
+     * @param bool $dirty
+     *
      * @return array
      */
-    public function toArray(): array
+    public function toArray($dirty = false): array
     {
         $array = [];
 
-        foreach ($this->data as $name => $value) {
+        $data = $dirty ? $this->getDirty() : $this->data;
+
+        foreach ($data as $name => $value) {
             if (is_iterable($value)) {
                 foreach ($value as $key => $single) {
                     if ($single instanceof Arrayable) {

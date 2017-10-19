@@ -59,6 +59,7 @@ class ObjectTest extends TestCase
         $this->assertEmpty($example->getDirty());
 
         $example->name = 'Jordan Dobrev';
+
         $example->age  = 27;
 
         $this->assertFalse($example->isClean());
