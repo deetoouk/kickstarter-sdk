@@ -76,4 +76,22 @@ trait HandlesDirtyAttributes
     {
         $this->dirty_attributes = [];
     }
+
+    /**
+     *
+     */
+    public function __clone()
+    {
+        foreach ($this->data as $key => $value) {
+            if (!isset(self::getProperties()[$key])) {
+                continue;
+            }
+
+            if (!self::getProperties()[$key]['write']) {
+                continue;
+            }
+
+            $this->addDirtyAttribute($key);
+        }
+    }
 }
