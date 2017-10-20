@@ -17,9 +17,13 @@ trait CopiesData
      */
     public function copy(Object $target)
     {
+        $this->unguard();
+
         foreach ($target as $attribute => $value) {
             $this->{$attribute} = $value;
         }
+
+        $this->guard();
 
         return $this;
     }
@@ -37,17 +41,19 @@ trait CopiesData
             if (isset(static::getProperties()[$property])) {
                 $type = static::getProperties()[$property]['type'];
                 if (strpos($type, '[]') !== false) { //array
-                    $type              = trim($type, '[]');
-                    $this->{$property} = new Collection();
+                    $type                  = trim($type, '[]');
+                    $this->data[$property] = new Collection();
                     foreach ($value as $key => $single) {
-                        $this->{$property}->put($key, static::castSingleProperty($type, $single));
+                        $this->data[$property]->put($key, static::castSingleProperty($type, $single));
                     }
                 } else {
-                    $this->{$property} = static::castSingleProperty($type, $value);
+                    $this->data[$property] = static::castSingleProperty($type, $value);
                 }
             } else {
-                $this->{$property} = $value;
+                $this->data[$property] = $value;
             }
+
+            $this->addDirtyAttribute($property);
         }
 
         return $this;
@@ -73,6 +79,10 @@ trait CopiesData
                 return Carbon::createFromTimestamp(strtotime($value));
             default:
                 if (class_exists($type)) {
+                    if (is_subclass_of($type, Object::class)) {
+                        return new $type($value, true);
+                    }
+
                     return new $type($value);
                 }
 

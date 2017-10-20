@@ -39,6 +39,27 @@ abstract class Object implements Arrayable, JsonSerializable, Jsonable
     protected $options = [];
 
     /**
+     * @var bool
+     */
+    protected $guard = true;
+
+    /**
+     * Guards all protected properties
+     */
+    public function guard()
+    {
+        $this->guard = true;
+    }
+
+    /**
+     * Lets you set guarded properties
+     */
+    public function unguard()
+    {
+        $this->unguard = true;
+    }
+
+    /**
      * Creates new object
      * if data is object or array it clones all fields
      * else it sets the Id
@@ -99,7 +120,7 @@ abstract class Object implements Arrayable, JsonSerializable, Jsonable
     public function __set($key, $value)
     {
         if (array_key_exists($key, static::getProperties())) {
-            if (!static::getProperties()[$key]['write']) {
+            if ($this->guard && !static::getProperties()[$key]['write']) {
                 throw new ErrorException(sprintf('Property %1$s is read-only!', $key));
             }
         }
