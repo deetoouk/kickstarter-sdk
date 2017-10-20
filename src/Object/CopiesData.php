@@ -17,13 +17,11 @@ trait CopiesData
      */
     public function copy(Object $target)
     {
-        $this->unguard();
-
         foreach ($target as $attribute => $value) {
             $this->{$attribute} = $value;
         }
 
-        $this->guard();
+        $this->markSetDataAsDirty();
 
         return $this;
     }
@@ -52,9 +50,9 @@ trait CopiesData
             } else {
                 $this->data[$property] = $value;
             }
-
-            $this->addDirtyAttribute($property);
         }
+
+        $this->markSetDataAsDirty();
 
         return $this;
     }

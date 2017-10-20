@@ -78,12 +78,13 @@ trait HandlesDirtyAttributes
     }
 
     /**
-     *
+     * Marks all write data as dirty
      */
-    public function __clone()
+    public function markSetDataAsDirty()
     {
         foreach ($this->data as $key => $value) {
             if (!isset(self::getProperties()[$key])) {
+                $this->addDirtyAttribute($key);
                 continue;
             }
 

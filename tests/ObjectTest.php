@@ -8,14 +8,17 @@ class ObjectTest extends TestCase
     {
         $class = new Example();
 
-        $this->assertSame(array_keys($class::getProperties()), [
-            'name',
-            'age',
-            'interests',
-            'orders',
-            'note',
-            'parent',
-        ]);
+        $this->assertSame(
+            array_keys($class::getProperties()),
+            [
+                'name',
+                'age',
+                'interests',
+                'orders',
+                'note',
+                'parent',
+            ]
+        );
 
         foreach ($class::getProperties() as $property) {
             $this->assertArrayHasKey('type', $property);
@@ -60,7 +63,7 @@ class ObjectTest extends TestCase
 
         $example->name = 'Jordan Dobrev';
 
-        $example->age  = 27;
+        $example->age = 27;
 
         $this->assertFalse($example->isClean());
         $this->assertTrue($example->isDirty());
@@ -91,5 +94,9 @@ class ObjectTest extends TestCase
         $example->parent->name = 'Leia Skywalker';
 
         $this->assertTrue($example->isClean());
+
+        $example = new Example(['name' => 'Jordan Dobrev']);
+
+        $this->assertTrue($example->isDirty());
     }
 }
