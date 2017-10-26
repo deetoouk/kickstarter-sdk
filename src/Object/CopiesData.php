@@ -36,7 +36,7 @@ trait CopiesData
     public function copyFromArray(array $array)
     {
         foreach ($array as $property => $value) {
-            if (isset(static::getProperties()[$property])) {
+            if (isset(static::getProperties()[$property]) && !is_null($value)) {
                 $type = static::getProperties()[$property]['type'];
                 if (strpos($type, '[]') !== false) { //array
                     $type                  = trim($type, '[]');
