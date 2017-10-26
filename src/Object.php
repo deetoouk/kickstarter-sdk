@@ -276,17 +276,6 @@ abstract class Object implements Arrayable, JsonSerializable, Jsonable
     }
 
     /**
-     *
-     */
-    public function settings()
-    {
-        return [
-            'expand'  => $this->expand,
-            'options' => $this->options,
-        ];
-    }
-
-    /**
      * @return \JTDSoft\EssentialsSdk\Service
      */
     protected function api()

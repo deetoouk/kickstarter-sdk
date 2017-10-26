@@ -12,24 +12,32 @@ use JTDSoft\EssentialsSdk\Exceptions\ErrorException;
 class Cast
 {
     /**
-     * @param string $cast
+     * @param Object $cast
      * @param        $response
      *
-     * @return mixed
+     * @return Object
+     * @internal param string $cast
      */
-    public static function single(string $cast, $response)
+    public static function single(Object $cast, $response)
     {
-        return new $cast($response, true);
+        $cast_class = get_class($cast);
+
+        $new = new $cast_class($response, true);
+
+        $new->expand($cast->getExpand());
+        $new->options($cast->getOptions());
+
+        return $new;
     }
 
     /**
+     * @param Object $cast
      * @param      $response
-     * @param null $cast
      *
      * @return mixed
      * @throws ErrorException
      */
-    public static function many($cast, $response): iterable
+    public static function many(Object $cast, $response): iterable
     {
         $result = new Collection();
 

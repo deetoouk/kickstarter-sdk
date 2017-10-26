@@ -12,7 +12,7 @@ use JTDSoft\EssentialsSdk\Object;
  * @property array $interests
  * @property-read int $orders
  * @property-write string $note
- * @property \Tests\Core\Example[] $parent
+ * @property \Tests\Example[] $parent
  */
 class Example extends Object
 {
