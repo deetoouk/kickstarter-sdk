@@ -99,4 +99,13 @@ class ObjectTest extends TestCase
 
         $this->assertTrue($example->isDirty());
     }
+
+    public function test_to_array_returns_non_documented_data()
+    {
+        $example = new Example();
+
+        $example->some_property_name = 'some_value';
+
+        $this->assertEquals($example->toArray(), ['some_property_name' => 'some_value']);
+    }
 }
