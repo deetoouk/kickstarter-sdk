@@ -10,10 +10,10 @@ class ErrorException extends \Exception
     {
         $this->error = $error;
 
-        if (is_scalar($error)) {
+        if (!is_array($error)) {
             $this->message = (string)$this->error;
         } else {
-            $this->message = var_export($this->error, true);
+            $this->message = implode(';', array_flatten($this->error));
         }
 
         $this->code = $code;
