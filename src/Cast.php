@@ -12,13 +12,13 @@ use JTDSoft\EssentialsSdk\Exceptions\ErrorException;
 class Cast
 {
     /**
-     * @param Object $cast
+     * @param SdkObject $cast
      * @param        $response
      *
-     * @return Object
+     * @return SdkObject
      * @internal param string $cast
      */
-    public static function single(Object $cast, $response)
+    public static function single(SdkObject $cast, $response)
     {
         $cast_class = get_class($cast);
 
@@ -31,13 +31,13 @@ class Cast
     }
 
     /**
-     * @param Object $cast
+     * @param SdkObject $cast
      * @param      $response
      *
      * @return mixed
      * @throws ErrorException
      */
-    public static function many(Object $cast, $response): iterable
+    public static function many(SdkObject $cast, $response): iterable
     {
         $result = new Collection();
 

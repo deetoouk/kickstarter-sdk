@@ -1,21 +1,21 @@
 <?php
 
-namespace JTDSoft\EssentialsSdk\Object;
+namespace JTDSoft\EssentialsSdk\SdkObject;
 
 use Carbon\Carbon;
 use JTDSoft\EssentialsSdk\Collection;
-use JTDSoft\EssentialsSdk\Object;
+use JTDSoft\EssentialsSdk\SdkObject;
 
 trait CopiesData
 {
     /**
      * Copies attributes from target object
      *
-     * @param Object $target
+     * @param SdkObject $target
      *
      * @return $this
      */
-    public function copy(Object $target)
+    public function copy(SdkObject $target)
     {
         foreach ($target as $attribute => $value) {
             $this->{$attribute} = $value;
@@ -36,8 +36,8 @@ trait CopiesData
     public function copyFromArray(array $array)
     {
         foreach ($array as $property => $value) {
-            if (isset(static::getProperties()[$property]) && !is_null($value)) {
-                $type = static::getProperties()[$property]['type'];
+            if (static::hasProperty($property) && !is_null($value)) {
+                $type = static::getPropertyType($property);
                 if (strpos($type, '[]') !== false) { //array
                     $type                  = trim($type, '[]');
                     $this->data[$property] = new Collection();
@@ -77,7 +77,7 @@ trait CopiesData
                 return Carbon::createFromTimestamp(strtotime($value));
             default:
                 if (class_exists($type)) {
-                    if (is_subclass_of($type, Object::class)) {
+                    if (is_subclass_of($type, SdkObject::class)) {
                         return new $type($value, true);
                     }
 

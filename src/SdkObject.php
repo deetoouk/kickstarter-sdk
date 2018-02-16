@@ -7,20 +7,22 @@ use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Contracts\Support\Jsonable;
 use JsonSerializable;
 use JTDSoft\EssentialsSdk\Exceptions\ErrorException;
-use JTDSoft\EssentialsSdk\Object\CopiesData;
-use JTDSoft\EssentialsSdk\Object\HandlesDirtyAttributes;
-use JTDSoft\EssentialsSdk\Object\ParsesProperties;
+use JTDSoft\EssentialsSdk\SdkObject\CopiesData;
+use JTDSoft\EssentialsSdk\SdkObject\HandlesDirtyAttributes;
+use JTDSoft\EssentialsSdk\SdkObject\ParsesProperties;
+use JTDSoft\EssentialsSdk\SdkObject\PreparesRequestData;
 
 /**
  * @Annotation
  * Class Base
  *
- * @package JTDSoft\EssentialsSdk\Objects
+ * @package JTDSoft\EssentialsSdk\SdkObject
  */
-abstract class Object implements Arrayable, JsonSerializable, Jsonable
+abstract class SdkObject implements Arrayable, JsonSerializable, Jsonable
 {
     use HandlesDirtyAttributes,
         ParsesProperties,
+        PreparesRequestData,
         CopiesData;
 
     /**
@@ -72,7 +74,7 @@ abstract class Object implements Arrayable, JsonSerializable, Jsonable
         static::parseProperties();
 
         if ($data) {
-            if ($data instanceof Object) {
+            if ($data instanceof SdkObject) {
                 $this->copy($data);
             } elseif (is_object($data)) {
                 $this->copyFromArray((array)$data);
@@ -96,8 +98,8 @@ abstract class Object implements Arrayable, JsonSerializable, Jsonable
      */
     public function __get($key)
     {
-        if (array_key_exists($key, static::getProperties())) {
-            if (!static::getProperties()[$key]['read']) {
+        if (static::hasProperty($key)) {
+            if (!static::isPropertyReadable($key)) {
                 throw new ErrorException(sprintf('Property %1$s is write-only!', $key));
             }
         }
@@ -119,8 +121,8 @@ abstract class Object implements Arrayable, JsonSerializable, Jsonable
      */
     public function __set($key, $value)
     {
-        if (array_key_exists($key, static::getProperties())) {
-            if ($this->guard && !static::getProperties()[$key]['write']) {
+        if (static::hasProperty($key)) {
+            if ($this->guard && !static::isPropertyWritable($key)) {
                 throw new ErrorException(sprintf('Property %1$s is read-only!', $key));
             }
         }
@@ -208,9 +210,19 @@ abstract class Object implements Arrayable, JsonSerializable, Jsonable
      */
     public function toArray($dirty = false): array
     {
-        $array = [];
-
         $data = $dirty ? $this->getDirty() : $this->data;
+
+        return $this->convertArrayToJsonSerializable($data);
+    }
+
+    /**
+     * @param array $data
+     *
+     * @return array
+     */
+    protected function convertArrayToJsonSerializable(array $data): array
+    {
+        $array = [];
 
         foreach ($data as $name => $value) {
             if (is_iterable($value)) {

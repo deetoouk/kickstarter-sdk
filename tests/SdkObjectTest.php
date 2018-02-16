@@ -2,14 +2,14 @@
 
 namespace Tests;
 
-class ObjectTest extends TestCase
+class SdkObjectTest extends TestCase
 {
     public function test_parses_properties()
     {
         $class = new Example();
 
         $this->assertSame(
-            array_keys($class::getProperties()),
+            $class::getProperties()->keys()->all(),
             [
                 'name',
                 'age',
@@ -107,5 +107,23 @@ class ObjectTest extends TestCase
         $example->some_property_name = 'some_value';
 
         $this->assertEquals($example->toArray(), ['some_property_name' => 'some_value']);
+    }
+
+    public function test_prepares_request_works()
+    {
+        $example = new Example();
+
+        $example->some_property_name = 'some_value';
+
+        $this->assertEquals($example->prepareRequestData(), []);
+
+        $example->name = 'Jordan Dobrev';
+
+        $this->assertEquals($example->prepareRequestData(), ['name' => 'Jordan Dobrev']);
+
+        $example->cleanDirtyAttributes();
+
+        $this->assertEquals($example->prepareRequestData(), []);
+        $this->assertEquals($example->prepareRequestData(false), ['name' => 'Jordan Dobrev']);
     }
 }

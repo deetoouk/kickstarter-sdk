@@ -1,7 +1,12 @@
 <?php
 
-namespace JTDSoft\EssentialsSdk\Object;
+namespace JTDSoft\EssentialsSdk\SdkObject;
 
+/**
+ * Trait HandlesDirtyAttributes
+ *
+ * @package JTDSoft\EssentialsSdk\SdkObject
+ */
 trait HandlesDirtyAttributes
 {
     /**
@@ -83,12 +88,12 @@ trait HandlesDirtyAttributes
     public function markSetDataAsDirty()
     {
         foreach ($this->data as $key => $value) {
-            if (!isset(self::getProperties()[$key])) {
+            if (!static::hasProperty($key)) {
                 $this->addDirtyAttribute($key);
                 continue;
             }
 
-            if (!self::getProperties()[$key]['write']) {
+            if (!static::isPropertyWritable($key)) {
                 continue;
             }
 

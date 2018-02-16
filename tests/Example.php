@@ -2,7 +2,7 @@
 
 namespace Tests;
 
-use JTDSoft\EssentialsSdk\Object;
+use JTDSoft\EssentialsSdk\SdkObject;
 
 /**
  * Class Example
@@ -14,6 +14,6 @@ use JTDSoft\EssentialsSdk\Object;
  * @property-write string $note
  * @property \Tests\Example[] $parent
  */
-class Example extends Object
+class Example extends SdkObject
 {
 }

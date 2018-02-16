@@ -1,13 +1,14 @@
 <?php
 
-namespace JTDSoft\EssentialsSdk\Object;
+namespace JTDSoft\EssentialsSdk\SdkObject;
 
+use Illuminate\Support\Collection;
 use ReflectionClass;
 
 /**
  * Trait ParsesProperties
  *
- * @package JTDSoft\EssentialsSdk\Object
+ * @package JTDSoft\EssentialsSdk\SdkObject
  */
 trait ParsesProperties
 {
@@ -31,7 +32,7 @@ trait ParsesProperties
             [static::class => static::class]
         );
 
-        static::$properties[static::class] = [];
+        static::$properties[static::class] = collect();
 
         foreach ($to_scan as $object) {
             $reflect = new ReflectionClass($object);
@@ -59,18 +60,78 @@ trait ParsesProperties
                         $write = true;
                         break;
                 }
-                static::$properties[static::class][ltrim($value, '$')] = compact('type', 'read', 'write');
+
+                static::$properties[static::class]->put(
+                    ltrim($value, '$'),
+                    compact('type', 'read', 'write')
+                );
             }
         }
     }
 
     /**
-     * @return array
+     * @return \Illuminate\Support\Collection
      */
-    public static function getProperties()
+    public static function getProperties(): Collection
     {
         static::parseProperties();
 
         return static::$properties[static::class];
+    }
+
+    /**
+     *
+     */
+    public static function getWritableProperties(): Collection
+    {
+        return self::getProperties()->where('write', true);
+    }
+
+    /**
+     *
+     */
+    public static function getReadableProperties(): Collection
+    {
+        return static::getProperties()->where('read', true);
+    }
+
+    /**
+     * @param $key
+     *
+     * @return bool
+     */
+    public static function isPropertyWritable($key): bool
+    {
+        return static::getProperties()->get($key)['write'];
+    }
+
+    /**
+     * @param $key
+     *
+     * @return bool
+     */
+    public static function isPropertyReadable($key): bool
+    {
+        return static::getProperties()->get($key)['read'];
+    }
+
+    /**
+     * @param $key
+     *
+     * @return bool
+     */
+    public static function hasProperty($key): bool
+    {
+        return static::getProperties()->has($key);
+    }
+
+    /**
+     * @param $key
+     *
+     * @return mixed
+     */
+    public static function getPropertyType($key)
+    {
+        return static::getProperties()->get($key)['type'];
     }
 }
