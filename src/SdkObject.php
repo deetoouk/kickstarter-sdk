@@ -58,7 +58,7 @@ abstract class SdkObject implements Arrayable, JsonSerializable, Jsonable
      */
     public function unguard()
     {
-        $this->unguard = true;
+        $this->guard = false;
     }
 
     /**
