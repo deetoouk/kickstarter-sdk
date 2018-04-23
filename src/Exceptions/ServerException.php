@@ -1,4 +1,4 @@
-<?php namespace JTDSoft\EssentialsSdk\Exceptions;
+<?php namespace DeeToo\KickstarterSdk\Exceptions;
 
 use Exception;
 

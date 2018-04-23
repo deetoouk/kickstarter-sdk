@@ -1,11 +1,11 @@
 <?php
 
-namespace JTDSoft\EssentialsSdk\SdkObject;
+namespace DeeToo\KickstarterSdk\SdkObject;
 
 /**
  * Trait PreparesRequestData
  *
- * @package JTDSoft\EssentialsSdk\SdkObject
+ * @package DeeToo\KickstarterSdk\SdkObject
  */
 trait PreparesRequestData
 {

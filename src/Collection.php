@@ -1,11 +1,11 @@
 <?php
 
-namespace JTDSoft\EssentialsSdk;
+namespace DeeToo\KickstarterSdk;
 
 /**
  * Class Collection
  *
- * @package JTDSoft\EssentialsSdk
+ * @package DeeToo\KickstarterSdk
  */
 class Collection extends \Illuminate\Support\Collection
 {

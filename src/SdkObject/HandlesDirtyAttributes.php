@@ -1,11 +1,11 @@
 <?php
 
-namespace JTDSoft\EssentialsSdk\SdkObject;
+namespace DeeToo\KickstarterSdk\SdkObject;
 
 /**
  * Trait HandlesDirtyAttributes
  *
- * @package JTDSoft\EssentialsSdk\SdkObject
+ * @package DeeToo\KickstarterSdk\SdkObject
  */
 trait HandlesDirtyAttributes
 {

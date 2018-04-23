@@ -2,7 +2,7 @@
 
 namespace Tests;
 
-use JTDSoft\EssentialsSdk\SdkObject;
+use DeeToo\KickstarterSdk\SdkObject;
 
 /**
  * Class Example

@@ -2,7 +2,7 @@
 
 namespace Tests;
 
-use JTDSoft\EssentialsSdk\Cast;
+use DeeToo\KickstarterSdk\Cast;
 
 class CastTest extends TestCase
 {

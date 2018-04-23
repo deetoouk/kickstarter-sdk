@@ -33,7 +33,7 @@
   },
   "autoload": {
     "psr-4": {
-      "JTDSoft\\EssentialsSdk\\": "src/"
+      "DeeToo\\KickstarterSdk\\": "src/"
     },
     "files": [
       "src/helpers.php"

@@ -1,13 +1,13 @@
 <?php
 
-namespace JTDSoft\EssentialsSdk;
+namespace DeeToo\KickstarterSdk;
 
-use JTDSoft\EssentialsSdk\Exceptions\ErrorException;
+use DeeToo\KickstarterSdk\Exceptions\ErrorException;
 
 /**
  * Class Cast
  *
- * @package JTDSoft\EssentialsSdk
+ * @package DeeToo\KickstarterSdk
  */
 class Cast
 {

@@ -1,22 +1,22 @@
 <?php
 
-namespace JTDSoft\EssentialsSdk;
+namespace DeeToo\KickstarterSdk;
 
 use DateTime;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Contracts\Support\Jsonable;
 use JsonSerializable;
-use JTDSoft\EssentialsSdk\Exceptions\ErrorException;
-use JTDSoft\EssentialsSdk\SdkObject\CopiesData;
-use JTDSoft\EssentialsSdk\SdkObject\HandlesDirtyAttributes;
-use JTDSoft\EssentialsSdk\SdkObject\ParsesProperties;
-use JTDSoft\EssentialsSdk\SdkObject\PreparesRequestData;
+use DeeToo\KickstarterSdk\Exceptions\ErrorException;
+use DeeToo\KickstarterSdk\SdkObject\CopiesData;
+use DeeToo\KickstarterSdk\SdkObject\HandlesDirtyAttributes;
+use DeeToo\KickstarterSdk\SdkObject\ParsesProperties;
+use DeeToo\KickstarterSdk\SdkObject\PreparesRequestData;
 
 /**
  * @Annotation
  * Class Base
  *
- * @package JTDSoft\EssentialsSdk\SdkObject
+ * @package DeeToo\KickstarterSdk\SdkObject
  */
 abstract class SdkObject implements Arrayable, JsonSerializable, Jsonable
 {
@@ -117,7 +117,7 @@ abstract class SdkObject implements Arrayable, JsonSerializable, Jsonable
      * @param $key
      * @param $value
      *
-     * @throws \JTDSoft\EssentialsSdk\Exceptions\ErrorException
+     * @throws \DeeToo\KickstarterSdk\Exceptions\ErrorException
      */
     public function __set($key, $value)
     {
@@ -288,7 +288,7 @@ abstract class SdkObject implements Arrayable, JsonSerializable, Jsonable
     }
 
     /**
-     * @return \JTDSoft\EssentialsSdk\Service
+     * @return \DeeToo\KickstarterSdk\Service
      */
     protected function api()
     {
@@ -308,7 +308,7 @@ abstract class SdkObject implements Arrayable, JsonSerializable, Jsonable
     /**
      * Override this method if using extended service
      *
-     * @return \JTDSoft\EssentialsSdk\Service
+     * @return \DeeToo\KickstarterSdk\Service
      */
     protected function service()
     {

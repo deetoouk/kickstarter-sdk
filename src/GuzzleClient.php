@@ -1,10 +1,10 @@
-<?php namespace JTDSoft\EssentialsSdk;
+<?php namespace DeeToo\KickstarterSdk;
 
-use JTDSoft\EssentialsSdk\Contracts\Client;
-use JTDSoft\EssentialsSdk\Exceptions\ErrorException;
-use JTDSoft\EssentialsSdk\Exceptions\ResponseException;
-use JTDSoft\EssentialsSdk\Exceptions\ServerException;
-use JTDSoft\EssentialsSdk\Exceptions\UnauthorizedException;
+use DeeToo\KickstarterSdk\Contracts\Client;
+use DeeToo\KickstarterSdk\Exceptions\ErrorException;
+use DeeToo\KickstarterSdk\Exceptions\ResponseException;
+use DeeToo\KickstarterSdk\Exceptions\ServerException;
+use DeeToo\KickstarterSdk\Exceptions\UnauthorizedException;
 use Exception;
 use GuzzleHttp\Client as Guzzle;
 use GuzzleHttp\Exception\ClientException as GuzzleClientException;
@@ -13,7 +13,7 @@ use GuzzleHttp\Exception\ServerException as GuzzleServerException;
 /**
  * Class Client
  *
- * @package JTDSoft\EssentialsSdk
+ * @package DeeToo\KickstarterSdk
  */
 class GuzzleClient implements Client
 {

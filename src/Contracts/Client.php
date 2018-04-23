@@ -1,6 +1,6 @@
 <?php
 
-namespace JTDSoft\EssentialsSdk\Contracts;
+namespace DeeToo\KickstarterSdk\Contracts;
 
 interface Client
 {

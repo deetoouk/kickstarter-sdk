@@ -1,10 +1,10 @@
 <?php
 
-namespace JTDSoft\EssentialsSdk\SdkObject;
+namespace DeeToo\KickstarterSdk\SdkObject;
 
 use Carbon\Carbon;
-use JTDSoft\EssentialsSdk\Collection;
-use JTDSoft\EssentialsSdk\SdkObject;
+use DeeToo\KickstarterSdk\Collection;
+use DeeToo\KickstarterSdk\SdkObject;
 
 trait CopiesData
 {

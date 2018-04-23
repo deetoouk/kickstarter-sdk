@@ -1,6 +1,6 @@
 <?php
 
-namespace JTDSoft\EssentialsSdk\Service;
+namespace DeeToo\KickstarterSdk\Service;
 
 trait DefaultRequestData
 {

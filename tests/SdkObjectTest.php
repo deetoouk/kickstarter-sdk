@@ -28,7 +28,7 @@ class SdkObjectTest extends TestCase
     }
 
     /**
-     * @expectedException \JTDSoft\EssentialsSdk\Exceptions\ErrorException
+     * @expectedException \DeeToo\KickstarterSdk\Exceptions\ErrorException
      * @expectedExceptionMessage Property orders is read-only!
      */
     public function test_read_only_properties()
@@ -41,7 +41,7 @@ class SdkObjectTest extends TestCase
     }
 
     /**
-     * @expectedException \JTDSoft\EssentialsSdk\Exceptions\ErrorException
+     * @expectedException \DeeToo\KickstarterSdk\Exceptions\ErrorException
      * @expectedExceptionMessage Property note is write-only!
      */
     public function test_write_only_properties()

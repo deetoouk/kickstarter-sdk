@@ -1,6 +1,6 @@
 <?php
 
-use JTDSoft\EssentialsSdk;
+use DeeToo\KickstarterSdk;
 
 if (!function_exists('class_uses_deep')) {
     function class_uses_deep($class, $autoload = true)

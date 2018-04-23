@@ -1,6 +1,6 @@
 <?php
 
-namespace JTDSoft\EssentialsSdk\Exceptions;
+namespace DeeToo\KickstarterSdk\Exceptions;
 
 class ErrorException extends \Exception
 {

@@ -1,16 +1,16 @@
 <?php
 
-namespace JTDSoft\EssentialsSdk;
+namespace DeeToo\KickstarterSdk;
 
 /**
  * Class Paging
  *
- * @package JTDSoft\EssentialsSdk
+ * @package DeeToo\KickstarterSdk
  */
 /**
  * Class Paging
  *
- * @package JTDSoft\EssentialsSdk
+ * @package DeeToo\KickstarterSdk
  */
 class Paging extends Collection
 {

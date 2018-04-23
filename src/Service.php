@@ -1,15 +1,15 @@
 <?php
 
-namespace JTDSoft\EssentialsSdk;
+namespace DeeToo\KickstarterSdk;
 
 use GuzzleHttp\Client as Guzzle;
-use JTDSoft\EssentialsSdk\Service\DefaultRequestData;
-use JTDSoft\EssentialsSdk\Service\SupportsHeaders;
+use DeeToo\KickstarterSdk\Service\DefaultRequestData;
+use DeeToo\KickstarterSdk\Service\SupportsHeaders;
 
 /**
  * Class Service
  *
- * @package JTDSoft\EssentialsSdk\Services
+ * @package DeeToo\KickstarterSdk\Services
  */
 class Service extends Config
 {
@@ -33,10 +33,10 @@ class Service extends Config
      * @param array $request
      *
      * @return mixed
-     * @throws \JTDSoft\EssentialsSdk\Exceptions\ErrorException
-     * @throws \JTDSoft\EssentialsSdk\Exceptions\ResponseException
-     * @throws \JTDSoft\EssentialsSdk\Exceptions\ServerException
-     * @throws \JTDSoft\EssentialsSdk\Exceptions\UnauthorizedException
+     * @throws \DeeToo\KickstarterSdk\Exceptions\ErrorException
+     * @throws \DeeToo\KickstarterSdk\Exceptions\ResponseException
+     * @throws \DeeToo\KickstarterSdk\Exceptions\ServerException
+     * @throws \DeeToo\KickstarterSdk\Exceptions\UnauthorizedException
      */
     final protected function call($verb, $method, array $request = null)
     {

@@ -1,6 +1,6 @@
 <?php
 
-namespace JTDSoft\EssentialsSdk;
+namespace DeeToo\KickstarterSdk;
 
 /**
  * Class Identity

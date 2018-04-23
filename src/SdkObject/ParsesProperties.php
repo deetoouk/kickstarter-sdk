@@ -1,6 +1,6 @@
 <?php
 
-namespace JTDSoft\EssentialsSdk\SdkObject;
+namespace DeeToo\KickstarterSdk\SdkObject;
 
 use Illuminate\Support\Collection;
 use ReflectionClass;
@@ -8,7 +8,7 @@ use ReflectionClass;
 /**
  * Trait ParsesProperties
  *
- * @package JTDSoft\EssentialsSdk\SdkObject
+ * @package DeeToo\KickstarterSdk\SdkObject
  */
 trait ParsesProperties
 {
